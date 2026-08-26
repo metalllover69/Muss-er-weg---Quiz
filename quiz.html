@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>MUSS ER WEG?! 2.0</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 40px;
+        }
+
+        .quiz {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        #frage {
+            font-size: 24px;
+            margin: 30px 0;
+        }
+
+        #ergebnis {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="quiz">
+
+    <h1>MUSS ER WEG?! 2.0</h1>
+
+    <div id="frage"></div>
+
+    <div id="buttons">
+
+        <button onclick="antwort(true)">JA</button>
+
+        <button onclick="antwort(false)">NEIN</button>
+
+    </div>
+
+    <div id="ergebnis"></div>
+
+</div>
+
+
+<script>
+
+const fragen = [
+
+    ["Ghostet er dich regelmäßig?", 5],
+
+    ["Hast du Angst vor ihm?", 5],
+
+    ["Hat er dir Blumen geholt oder dir Geschenke gemacht?", -3],
+
+    ["Schreibt er dir regelmäßig?", -5],
+
+    ["Gab es schon mal rassistische oder sexistische Kommentare von ihm?", 3],
+
+    ["Hat er dich schonmal beleidigt?", 5],
+
+    ["Redet er gut über andere? z.B. Familie, Freunde, Ex-Partner", -3],
+
+    ["Hat er einen unangenehmen Namen? z.B. Dragon, Tiger, Geronimo, Ferdinand, Chien", 1],
+
+    ["Könnt ihr viel miteinander lachen?", -3],
+
+    ["Kannst du mit ihm reden?", -1],
+
+    ["Hat er kein Ego-Problem?", -1],
+
+    ["Ist er politisch korrekt? Für Feminismus, gegen Rassismus, gegen Sexismus und für LGBTQ+ Rechte", -5],
+
+    ["Hat er ein gutes Verhältnis zu seinen Eltern?", -3],
+
+    ["Ist er für Abtreibung?", -3],
+
+    ["Wird er gewalttätig?", 10],
+
+    ["Ist er immer negativ?", 1],
+
+    ["Ist er schonmal fremdgegangen?", 5],
+
+    ["Respektiert er deine Grenzen?", -3],
+
+    ["Steht er auf Füße?", -1],
+
+    ["Hat er normale Freunde?", -3],
+
+    ["Ist der Altersunterschied zu groß?", 1],
+
+    ["Unterstützt er dich bei deinen Zielen?", -3],
+
+    ["Hat er ernsthafte Probleme mit Drogen oder Alkohol?", 3],
+
+    ["Hat er Hobbies? Kein E-Sport, Hobbyhorsing etc.", 1],
+
+    ["Ist er krankhaft eifersüchtig oder kontrollierend?", 5],
+
+    ["Sperrt er dich in seiner Wohnung ein?", 10]
+
+];
+
+
+let aktuelleFrage = 0;
+
+let punkte = 0;
+
+
+function zeigeFrage() {
+
+    if (aktuelleFrage < fragen.length) {
+
+        document.getElementById("frage").innerText =
+            fragen[aktuelleFrage][0];
+
+    }
+
+    else {
+
+        auswertung();
+
+    }
+
+}
+
+
+function antwort(ja) {
+
+    if (ja) {
+
+        punkte += fragen[aktuelleFrage][1];
+
+    }
+
+    aktuelleFrage++;
+
+    zeigeFrage();
+
+}
+
+
+function auswertung() {
+
+    document.getElementById("buttons").style.display = "none";
+
+
+    document.getElementById("frage").innerText =
+        "Punktzahl: " + punkte;
+
+
+    if (punkte < 10) {
+
+        document.getElementById("ergebnis").innerText =
+            "Hey herzlichen Glückwunsch! Der Typ sieht doch ganz gut aus. Du solltest ihn echt behalten. Ich sehe für euch eine helle Zukunft!";
+
+    }
+
+
+    else if (punkte < 20) {
+
+        document.getElementById("ergebnis").innerText =
+            "Ähm ja. Soweit so gut. Behalte den Knecht mal im Auge. Mal gucken in welche Richtung der Kandidat wackelt. Aber es gilt: sobald er komisch wird, Arschtritt und ab in die Tonne mit ihm.";
+
+    }
+
+
+    else {
+
+        document.getElementById("ergebnis").innerText =
+            "SCHATZ. WO hast du diese Kreatur gefunden? In der Hölle? Bei den Ostereiern zuhause? Wenn du nicht eingesperrt oder sterben möchtest, würde ich dir SCHNELL raten, den Blockier-Knopf zu drücken.";
+
+    }
+
+}
+
+
+zeigeFrage();
+
+</script>
+
+</body>
+
+</html>
